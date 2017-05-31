@@ -20,11 +20,14 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^twitter_monitor.herokuapp.com/admin/', include(admin.site.urls)),
-    url('^twitter_monitor.herokuapp.com/accounts/', include('django.contrib.auth.urls')),
-    url(r'^twitter_monitor.herokuapp.com/', include('twitter_monitor.urls')),
+    url(r'^$', RedirectView.as_view(url='/twitter_monitor.herokuapp.com/monitoramentos/', permanent=True)),
+    url(r'^twitter_monitor.herokuapp.com/accounts/', include('django.contrib.auth.urls')),
+    url(r'^twitter_monitor.herokuapp.com/', include('twitter_monitor.urls', namespace='monitoramento')),
 ]
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+

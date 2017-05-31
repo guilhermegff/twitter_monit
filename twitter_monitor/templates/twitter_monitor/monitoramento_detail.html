@@ -1,0 +1,93 @@
+{% extends "base_generic.html" %}
+{% block link %}
+	<li><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+{% endblock %}
+
+{% block sidebar %}
+      <ul class="sidebar-nav">
+	  <li><a>Monitoramento: {{ atual.palavra }}</a></li>
+      </ul>
+      <ul class="sidebar-nav">	
+          <li>Logado: {{ usuario }}</li>
+	  <li><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+	  <li><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+	  </br>
+          <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+      </ul>
+      {% endblock %}
+{% block content %}
+    <h1>{{monitoramento}} Itens no Monitoramento</h1>
+
+    {% if object_list %}  
+    <ul style="background: rgba(54, 93, 247, 0.16); padding:20px"> 
+	<form action="{% url 'monitoramento:aplicar' pk %}" method="post">
+	{% csrf_token %}		
+	{% for it in object_list %}
+	<div style="backgroundd:rgba(231, 247, 54, 0.16)">
+	<li style="background:white; padding:5px"><p>@{{ it.nome_twi }} Busca: {{ it.monit }} Sentimento: {{ it.quali }}</p></li>
+	<li><p>{{ it.texto }}</p></li>
+	    <li>		  
+    		   <input type="checkbox" name="choice" id="1" value= "{{ it.id }}"/>
+    	  	   <label>Selecionar</label><br />		   		   	    
+	</br></div>
+	{% endfor %}    	
+    </ul>
+    <div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+    <span class="step-links">
+	{% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+        <span class="current">
+            Pagina {{ object_list.number }} de {{ object_list.paginator.num_pages }}.
+        </span>
+       </span> 
+    </span>
+</div>
+
+    </br>
+    </br>
+    <div class="col-sm-4">
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+    <p class="panel-title">Acoes</p>
+    </div>
+    <div class="panel-body">
+    <input type="radio" name="acao" id="1" value="NEG" />
+    <label >Negativo</label><br />
+    <input type="radio" name="acao" id="1" value="POS" />
+    <label>Positivo</label><br />
+    <input type="radio" name="acao" id="1" value="NEU" />
+    <label>Neutro</label><br />
+    <input type="radio" name="acao" id="1" value="deletar" />
+    <label>Excluir</label><br />
+    <input type="text" name="tag" id="1" />
+    <label>Tag:</label><br />
+    <input type="submit" value="Aplicar" />
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+    <p class="panel-title">Filtros</p>
+    </div>
+    <div class="panel-body">
+    <input type="radio" name="acao" id="1" value="por_sem" />
+    <label>Semanal</label><br />
+    <input type="radio" name="acao" id="1" value="por_mes" />
+    <label>Mensal</label><br />
+    <input type="radio" name="acao" id="1" value="total" />
+    <label>Total</label><br />
+    <input type="submit" value="Selecionar" />
+    </div>
+    </div>
+    </div>
+    </form>
+    {% else %}
+	<p>Nenhum item coletado</p>
+    {% endif %}
+{% endblock %} 

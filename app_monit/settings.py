@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'syf(by#w(+c#yne&n1460r0rue)k*_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', False))
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -85,9 +85,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'piehjaux',
 	'USER': 'piehjaux',
-	'HOST':'',
+	'HOST':'horton.elephantsql.com',
 	'PORT':'5432',
-	'PASSWORD':',
+	'PASSWORD':'sIGwRXVHkYpDusOw1rJSF2G14a8zAKoE',
 	
     }
 }
@@ -114,7 +114,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/monitoramentos'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

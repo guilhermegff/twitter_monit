@@ -11,11 +11,11 @@ import datetime
 from chartit import DataPool, Chart
 
 def combview():
-	query  = Item.objects.raw("select count(id) as id, data_pub from livros_item group by data_pub")
-	query1 = Item.objects.raw("select count(id) as id, quali from livros_item group by quali")
-	query2 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEU' group by data_pub")
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEG' group by data_pub")
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='POS' group by data_pub")
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item group by data_pub")
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item group by quali")
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' group by data_pub")
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' group by data_pub")
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS' group by data_pub")
 
 	info =\
 	DataPool(
@@ -62,11 +62,11 @@ def combview():
 
 def combview_mensal(monit_id):
 	monit_id = monit_id
-	query  = Item.objects.raw("select count(id) as id, data_pub from livros_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-	query1 = Item.objects.raw("select count(id) as id, quali from livros_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
-	query2 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEU' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEG' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='POS'AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
 
 	info =\
 	DataPool(
@@ -114,11 +114,11 @@ def combview_mensal(monit_id):
 
 def combview_semanal(monit_id):
 	monit_id = monit_id
-	query  = Item.objects.raw("select count(id) as id, data_pub from livros_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-	query1 = Item.objects.raw("select count(id) as id, quali from livros_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
-	query2 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEU' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEG' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='POS'AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by quali",[monit_id])
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub",[monit_id])
 
 	info =\
 	DataPool(
@@ -166,11 +166,11 @@ def combview_semanal(monit_id):
 
 def combview_total(monit_id):
 	monit_id = monit_id
-	query  = Item.objects.raw("select count(id) as id, data_pub from livros_item where monit_id = %s group by data_pub",[monit_id])
-	query1 = Item.objects.raw("select count(id) as id, quali from livros_item where monit_id = %s group by quali",[monit_id])
-	query2 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEU' AND monit_id = %s group by data_pub",[monit_id])
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEG' AND monit_id = %s group by data_pub",[monit_id])
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='POS'AND monit_id = %s group by data_pub",[monit_id])
+	query  = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where monit_id = %s group by data_pub",[monit_id])
+	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item where monit_id = %s group by quali",[monit_id])
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' AND monit_id = %s group by data_pub",[monit_id])
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' AND monit_id = %s group by data_pub",[monit_id])
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS'AND monit_id = %s group by data_pub",[monit_id])
 
 	info =\
 	DataPool(
@@ -218,7 +218,7 @@ def combview_total(monit_id):
 
 def lineview():
 
-    	query1 = Item.objects.raw("select count(id) as id, data_pub from livros_item group by data_pub")
+    	query1 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item group by data_pub")
         info =\
 	DataPool(
 	    series=
@@ -234,9 +234,9 @@ def lineview():
   
 def columnview():
     
-	query2 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEU' group by data_pub")
-    	query3 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='NEG' group by data_pub")
-    	query4 = Item.objects.raw("select count(id) as id, data_pub from livros_item where quali='POS' group by data_pub")
+	query2 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEU' group by data_pub")
+    	query3 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='NEG' group by data_pub")
+    	query4 = Item.objects.raw("select count(id) as id, data_pub from twitter_monitor_item where quali='POS' group by data_pub")
 	info =\
 	DataPool(
 	    series=
@@ -267,7 +267,7 @@ def columnview():
 	return cht1
 
 def pieview():	
-    	query1 = Item.objects.raw("select count(id) as id, quali from livros_item group by quali")
+    	query1 = Item.objects.raw("select count(id) as id, quali from twitter_monitor_item group by quali")
 
     	info =\
 	DataPool(
@@ -287,7 +287,7 @@ def pieview():
 def barview(usuario_id):
 
 	usuario_id = usuario_id
-        query = Item.objects.raw('SELECT count(li.id) as id, lm.palavra as monitoramento FROM livros_item li INNER JOIN livros_monitoramento lm ON li.monit_id = lm.id WHERE lm.usuario_id= %s GROUP BY lm.id', [usuario_id])	
+        query = Item.objects.raw('SELECT count(li.id) as id, lm.palavra as monitoramento FROM twitter_monitor_item li INNER JOIN twitter_monitor_monitoramento lm ON li.monit_id = lm.id WHERE lm.usuario_id= %s GROUP BY lm.id', [usuario_id])	
 	info =\
 	DataPool(
 	    series=

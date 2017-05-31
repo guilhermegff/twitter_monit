@@ -3,6 +3,19 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import date
 
+class Monitoramento(models.Model):
+
+    palavra = models.CharField(max_length=60)
+    usuario = models.ForeignKey(User)
+
+    def __unicode__(self):
+    	
+    	return self.palavra
+
+    def get_absolute_url(self):
+    	
+    	return reverse('monitoramento_detail', args=[str(self.id)])
+
 class Item(models.Model):
 
     monit = models.ForeignKey('Monitoramento')
@@ -17,18 +30,7 @@ class Item(models.Model):
 
     	return self.monitoramento.palavra
 
-class Monitoramento(models.Model):
 
-    palavra = models.CharField(max_length=60)
-    usuario = models.ForeignKey(User)
-
-    def __unicode__(self):
-    	
-    	return self.palavra
-
-    def get_absolute_url(self):
-    	
-    	return reverse('monitoramento_detail', args=[str(self.id)])
 
     
     

@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
             name='Item',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('quali', models.CharField(default=b'sem', max_length=3)),
                 ('data_pub', models.DateField(null=True, blank=True)),
                 ('texto', models.TextField(max_length=200, null=True, blank=True)),
                 ('nome_twi', models.CharField(max_length=100)),
@@ -30,21 +31,9 @@ class Migration(migrations.Migration):
                 ('usuario', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
-        migrations.CreateModel(
-            name='Qualidade',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('sentimento', models.CharField(help_text=b'Sentimento', max_length=10, blank=True)),
-            ],
-        ),
         migrations.AddField(
             model_name='item',
             name='monit',
-            field=models.ForeignKey(to='livros.Monitoramento'),
-        ),
-        migrations.AddField(
-            model_name='item',
-            name='quali',
-            field=models.ForeignKey(to='livros.Qualidade'),
+            field=models.ForeignKey(to='twitter_monitor.Monitoramento'),
         ),
     ]

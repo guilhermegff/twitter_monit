@@ -19,7 +19,7 @@ def index(request):
 
 class MonitoramentoListView(LoginRequiredMixin, generic.ListView):
     model = Monitoramento
-    template_name = 'livros/monitoramento_list.html'
+    template_name = 'twitter_monitor/monitoramento_list.html'
     paginate_by = 7
     bar = None
 
@@ -61,7 +61,7 @@ def GraficoView(request, pk):
 	cb = combview_semanal(monit_id)  	
     else:
 	cb = combview_total(monit_id)
-    return render_to_response('livros/GraficoView.html', {'chart_list': cb, 'monit_id': pk, 'usuario':usuario, 'atual': monitoramento_atual})
+    return render_to_response('twitter_monitor/GraficoView.html', {'chart_list': cb, 'monit_id': pk, 'usuario':usuario, 'atual': monitoramento_atual})
 
 
 @login_required
@@ -86,9 +86,9 @@ def MonitoramentoDetailView(request, pk, filtro):
     nome_monitor = Monitoramento.objects.get(id=monit_id)
 
     if (query == '1'):
-        item_list = list(Item.objects.raw("select * from livros_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit_id]))
+        item_list = list(Item.objects.raw("select * from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit_id]))
     elif (query == '2'):
-	item_list = list(Item.objects.raw("select * from livros_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit_id]))
+	item_list = list(Item.objects.raw("select * from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit_id]))
     else:
 	item_list = list(Item.objects.filter(monit_id=monit_id))
     
@@ -101,7 +101,7 @@ def MonitoramentoDetailView(request, pk, filtro):
     except PageNotAnInteger:
 	itens = paginator.page(1)
 
-    return render_to_response('livros/monitoramento_detail.html', {'pk': monit_id, 'atual': nome_monitor, 'usuario': usuario, 'object_list': itens, 'monitoramento': monitoramento})
+    return render_to_response('twitter_monitor/monitoramento_detail.html', {'pk': monit_id, 'atual': nome_monitor, 'usuario': usuario, 'object_list': itens, 'monitoramento': monitoramento})
 
 @csrf_exempt
 def aplicar(request, pk):
@@ -179,7 +179,7 @@ class MonitoramentoDelete(DeleteView):
     success_url = reverse_lazy('monitoramento:monitoramentos')
 
 
-from livros.serializers import MonitoramentoSerializer, ItemSerializer
+from twitter_monitor.serializers import MonitoramentoSerializer, ItemSerializer
 from django.db.models import Q
 from rest_framework import generics
 
@@ -218,7 +218,7 @@ class ItemListMensal(generics.ListAPIView):
     def get_queryset(self):
 	usuario = self.kwargs.get(self.lookup_url_kwarg[0])
 	monit = self.kwargs.get(self.lookup_url_kwarg[1])
-	itens = list(Item.objects.raw("select * from livros_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit]))
+	itens = list(Item.objects.raw("select * from twitter_monitor_item where data_pub >= current_date - integer '30' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit]))
 	return itens
 
 class ItemListSemanal(generics.ListAPIView):
@@ -228,5 +228,5 @@ class ItemListSemanal(generics.ListAPIView):
     def get_queryset(self):
 	usuario = self.kwargs.get(self.lookup_url_kwarg[0])
 	monit = self.kwargs.get(self.lookup_url_kwarg[1])
-	itens = list(Item.objects.raw("select * from livros_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit]))
+	itens = list(Item.objects.raw("select * from twitter_monitor_item where data_pub >= current_date - integer '7' and data_pub <= current_date and monit_id = %s group by data_pub, id",[monit]))
 	return itens
