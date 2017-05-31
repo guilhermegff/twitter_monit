@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+{% block head %}
+   {% load chartit %}
+   {{ chart_list|load_charts:"chart_1" }}
+{% endblock %}
+{% block sidebar %}
+      <ul class="sidebar-nav">
+	  <li><a>Monitoramento: {{ atual.palavra }}</a></li>
+      </ul>
+      <ul class="sidebar-nav">	
+          <li>Logado: {{ usuario }}</li>
+	  <li><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+	  </br>
+          <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+      </ul>
+      {% endblock %}
+{% block content %}
+   {% block title %}<title>GraficoView</title>{% endblock %}  
+   <form action="{% url 'monitoramento:Grafico' monit_id %}" method="post">
+   {% csrf_token %} 
+   <div style="margin:0 auto;position:relative;width:800px" id="chart_1"> Chart will be rendered here </div>
+   <p>Filtros</p>
+   <input type="radio" name="acao" id="1" value="por_sem" />
+   <label>Semanal</label><br />
+   <input type="radio" name="acao" id="1" value="por_mes" />
+   <label>Mensal</label><br />
+   <input type="radio" name="acao" id="1" value="total" />
+   <label>Total</label><br />
+   <input type="submit" value="Aplicar" />
+   </form>
+{% endblock %}
+

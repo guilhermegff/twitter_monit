@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Home Twitter Monitor</h1>
+   <p>Bem vindo ao <em>Twitter Monitor</em>.</p>
+<h2>Dados Gerais<h2>
+   <p>O monitor possui as seguintes contagens de registros</p>
+   <ul>
+     <li><strong>Monitoramentos:</strong> {{ num_monitoramentos }}</li>
+     <li><strong>Itens:</strong> {{ num_itens }}</li>
+   </ul>
+   <p>Acessou {{ num_visits }}{% if num_visits == 1 %} vez {% endif %}.</p>
+{% endblock %}
