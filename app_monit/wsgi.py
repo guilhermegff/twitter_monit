@@ -1,5 +1,5 @@
 """
-WSGI config for apimonitor project.
+WSGI config for app_monit project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
