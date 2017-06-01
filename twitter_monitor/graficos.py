@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, QueryDict
 from django.views import generic
-from django.auth_mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
 from chartit import DataPool, Chart
