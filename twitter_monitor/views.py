@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, QueryDict, HttpResponse, Http404
 from django.views import generic
 from django.core.paginator import Paginator, PageNotAnInteger
-from django.auth_mixins import LoginRequiredMixin
+from auth_mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
 from django.views.decorators.csrf import csrf_exempt
