@@ -5,13 +5,13 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, QueryDict, HttpResponse, Http404
 from django.views import generic
 from django.core.paginator import Paginator, PageNotAnInteger
-from . import auth_mixins
+from auth_mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse, reverse_lazy
 import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from chartit import DataPool, Chart
-from . import got
+from got import *
 from .graficos import combview_total, combview_mensal, combview_semanal, barview
 
 def index(request):
