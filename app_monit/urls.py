@@ -19,10 +19,10 @@ from django.views.generic import RedirectView
 
 
 urlpatterns = [
-    url(r'^monitwi.herokuapp.com/admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
     #url(r'^$', RedirectView.as_view(url='/monitwi.herokuapp.com/monitoramentos/', permanent=True)),
-    url(r'^monitwi.herokuapp.com/accounts/', include('django.contrib.auth.urls')),
-    url(r'^monitwi.herokuapp.com/', include('twitter_monitor.urls', namespace='monitoramento')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^', include('twitter_monitor.urls', namespace='monitoramento')),
 ]
 
 from django.conf import settings
