@@ -1,10 +1,53 @@
-.sidebar-nav {
+.sidebar-nav 
+{
 	margin-top: 20px;
 	padding: 0;
+ 	font-family:'Calibri';
 	list-style-type: none;
-	border-style: outset;
+	border-style: solid;
+	border-color: gray black black black;
+	border-radius: 5px;
+	background-color: white;
+	box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);
+	
 }
 
-body {
-	background: white;
+.divgrafico 
+{
+	border-style: outset;
+	border-color: blue;
+}
+
+#inner
+{
+    	position: absolute;
+ 	left: 0;
+ 	overflow-x: hidden;
+ 	overflow-y: scroll;
+}
+
+#inner::-moz-scrollbar {
+ display: none;
+}
+
+
+
+h1 
+{
+    	font-size: 40px;
+	display:block;
+	color:white;
+	font-family:'Calibri';
+	text-shadow: 1px 1px 2px white;
+	margin:0 auto;
+	margin-top:20px;
+	margin-left:40px;
+	border-bottom:1px dotted white;
+	border-left:2px dotted purple;
+	text-align:center;
+}
+
+body 
+{
+	background: #1d2534;
 }

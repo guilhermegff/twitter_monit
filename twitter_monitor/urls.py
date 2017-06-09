@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from twitter_monitor import views
+
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.schemas import get_schema_view
 

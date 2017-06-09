@@ -179,7 +179,7 @@ class MonitoramentoDelete(DeleteView):
     success_url = reverse_lazy('monitoramento:monitoramentos')
 
 
-from twitter_monitor.serializers import MonitoramentoSerializer, ItemSerializer
+from serializers import MonitoramentoSerializer, ItemSerializer
 from django.db.models import Q
 from rest_framework import generics
 

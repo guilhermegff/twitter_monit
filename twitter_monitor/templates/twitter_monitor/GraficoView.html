@@ -4,29 +4,40 @@
    {{ chart_list|load_charts:"chart_1" }}
 {% endblock %}
 {% block sidebar %}
+      <form action="{% url 'monitoramento:Grafico' monit_id %}" method="post">
+      {% csrf_token %}
       <ul class="sidebar-nav">
-	  <li><a>Monitoramento: {{ atual.palavra }}</a></li>
+	  <li style=""><a href="{% url 'monitoramento:monitoramento_detail' pk=monit_id filtro=0 %}">Monitoramento: {{ atual.palavra }}</a></li>
       </ul>
       <ul class="sidebar-nav">	
-          <li>Logado: {{ usuario }}</li>
-	  <li><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+          <li style="">Logado: {{ usuario }}</li>
+	  <li style=""><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
 	  </br>
-          <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+          <li style=""><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
       </ul>
+      <ul class="sidebar-nav">
+	  <li style="" ><a>Filtros</a></li>
+	  <li style=""><input type="radio" name="acao" id="1" value="por_sem" />
+   	  <label>Semanal</label></li><br />
+   	  <li style=""><input type="radio" name="acao" id="1" value="por_mes" />
+   	  <label>Mensal</label></li><br />
+   	  <li style=""><input type="radio" name="acao" id="1" value="total" />
+	  <label>Total</label></li><br />
+   	  <li style=""><input type="submit" value="Aplicar" /></li>
+      </ul>
+      </form>
       {% endblock %}
 {% block content %}
+   <h1>Itens no Monitoramento</h1>
    {% block title %}<title>GraficoView</title>{% endblock %}  
    <form action="{% url 'monitoramento:Grafico' monit_id %}" method="post">
    {% csrf_token %} 
-   <div style="margin:0 auto;position:relative;width:800px" id="chart_1"> Chart will be rendered here </div>
-   <p>Filtros</p>
-   <input type="radio" name="acao" id="1" value="por_sem" />
-   <label>Semanal</label><br />
-   <input type="radio" name="acao" id="1" value="por_mes" />
-   <label>Mensal</label><br />
-   <input type="radio" name="acao" id="1" value="total" />
-   <label>Total</label><br />
-   <input type="submit" value="Aplicar" />
-   </form>
+   <div style="margin:0 auto;position:relative;width:800px;height:400px;margin-top:20px;margin-left:68px;box-shadow: 1px 0.5px 2px #5ddeea;border-style:outset;border-color:lightgrey black black lightgrey;border-width:2px;border-radius: 5px;overflow:hidden"" id="chart_1"> Chart will be rendered here </div>
 {% endblock %}
+
+
+
+
+
+
 
