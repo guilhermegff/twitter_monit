@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
 from .models import Monitoramento, Item
-from django.shortcuts import get_object_or_404, render, render_to_response
+from django.shortcuts import get_object_or_404, render, render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, QueryDict, HttpResponse, Http404
 from django.views import generic
 from django.core.paginator import Paginator, PageNotAnInteger
-from auth_mixins import LoginRequiredMixin
+from django.auth_mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse, reverse_lazy
-import datetime
+from datetime import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from chartit import DataPool, Chart
 from got import *
 from .graficos import combview_total, combview_mensal, combview_semanal, barview
@@ -144,15 +145,19 @@ def coletar(request):
     pk = request.POST.get('palavra')
     objeto = get_object_or_404(Monitoramento, pk=pk)
     palavra = objeto.palavra
-    tweetCriteria = manager.TweetCriteria().setQuerySearch(palavra).setSince("2017-05-28").setUntil("2017-05-29").setMaxTweets(5)
-    tweet = manager.TweetManager.getTweets(tweetCriteria)
-    for msg in tweet:
-	i = Item()
-	i.texto = msg.text
-	i.data_pub = msg.date
-	i.nome_twi = msg.username
-	i.monit_id = objeto.pk
-	i.save()
+    dataini = date.today()
+    for dias in range(7):
+    	dataFrom = dataini - timedelta(dias + 1)
+	dataTo = dataFrom + timedelta(1)
+    	tweetCriteria = manager.TweetCriteria().setQuerySearch(palavra).setSince(str(dataFrom)).setUntil(str(dataTo)).setMaxTweets(20)
+    	tweet = manager.TweetManager.getTweets(tweetCriteria)
+    	for msg in tweet:
+	    i = Item()
+	    i.texto = msg.text
+	    i.data_pub = msg.date
+	    i.nome_twi = msg.username
+	    i.monit_id = objeto.pk
+	    i.save()
     return HttpResponseRedirect(reverse('monitoramento:monitoramentos'))
 
 
@@ -169,6 +174,20 @@ class MonitoramentoCreate(LoginRequiredMixin, CreateView):
 	object.usuario = self.request.user
 	object.save()
 	return super(MonitoramentoCreate, self).form_valid(form)
+
+def cadastro(request):
+    if request.method == 'POST':
+	form = UserCreationForm(request.POST)
+	if form.is_valid():
+	    form.save()
+	    username = form.cleaned_data.get('username')
+	    raw_password = form.cleaned_data.get('password')
+	    user = authenticate(username=username, password=raw_password)
+	    login(request, user)
+	    return redirect('monitoramento:monitoramentos')
+    else:
+	form = UserCreationForm()
+    return render(request, 'livros/cadastro_form.html', {'form': form})
 	
 class MonitoramentoUpdate(UpdateView):
     model = Monitoramento

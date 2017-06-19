@@ -5,41 +5,42 @@
 
 {% block sidebar %}
       <ul class="sidebar-nav">
-	  <li style="margin-left:7px"><a>Monitoramento: {{ atual.palavra }}</a></li>
+	  <li style="margin-left:7px"><a>Monitoramento: </br>{{ atual.palavra }}</a></li>
       </ul>
       <ul class="sidebar-nav">	
-          <li style="margin-left:7px">Logado: {{ usuario }}</li>
-	  <li style="margin-left:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
-	  <li style="margin-left:7px"><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+          <li style="margin:7px">Logado: {{ usuario }}</li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar</a></li>
 	  </br>
-          <li style="margin-left:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+          <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
       </ul>
       <form action="{% url 'monitoramento:aplicar' pk %}" method="post">
       {% csrf_token %}
       <ul class="sidebar-nav">
-	  <li style="margin-left:7px"><a>Acoes</a></li>
-	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="NEG" />
+	  <li style="margin:7px"><a>Acoes</a></li>
+	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="NEG" />
     	  <label >Negativo</label><br /></li>
-    	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="POS" />
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="POS" />
     	  <label>Positivo</label><br /></li>
-    	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="NEU" />
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="NEU" />
     	  <label>Neutro</label><br /></li>
-    	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="deletar" />
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="deletar" />
     	  <label>Excluir</label><br /></li>
-    	  <li style="margin-left:7px"><label>Tag:</label></br>
-	  <input style="width:120px;margin-left:7px" type="text" name="tag" id="1" />
+    	  <li style="margin:7px"><label>Tag:</label></br>
+	  <input style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(153, 79, 232, 0.4), -2px 1px 2px rgba(153, 79, 232, 0.4), 1px 1px 2px rgba(153, 79, 232, 0.4);width:120px;margin:7px" type="text" name="tag" id="1" />
     	  <br /></li>
-    	  <li style="margin-left:7px;margin-bottom:3px"><input type="submit" value="Aplicar" /></li>	
+    	  <li style="margin:7px"><input style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" value="Aplicar" /></li>	
       </ul>
       <ul class="sidebar-nav">
-	  <li style="margin-left:7px"><a>Filtros</a></li>
-      	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="por_sem" />
+	  <li style="margin:7px"><a>Filtros</a></li>
+      	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_sem" />
     	  <label>Semanal</label><br /></li>
-    	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="por_mes" />
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="por_mes" />
     	  <label>Mensal</label><br /></li>
-    	  <li style="margin-left:7px"><input type="radio" name="acao" id="1" value="total" />
+    	  <li style="margin:7px"><input type="radio" name="acao" id="1" value="total" />
     	  <label>Total</label><br /></li>
-    	  <li style="margin-left:7px"><input type="submit" value="Selecionar" /></li>
+    	  <li style="margin:7px"><input  style="color:black;padding-left:7px;background-color:rgba(220, 217, 227, 0.68);border-style: solid;border-color: gray black black black;border-radius: 5px;box-shadow: 1px 0.5px 2px rgba(93, 222, 234, 0.5), -2px 1px 2px rgba(93, 222, 234, 0.5), 1px 1px 2px rgba(93, 222, 234, 0.5);" type="submit" value="Filtrar" /></li>
       
       {% endblock %}
 {% block content %}
@@ -50,11 +51,11 @@
 			
 	{% for it in object_list %}
 	<div style="background:white;box-shadow: 1px 1px 2px black;padding:1px;margin-top:1px;border-style:outset;border-color:lightgrey black black black;border-width:1px;border-radius: 5px;overflow:hidden">
-	<li style="padding:5px"><p><span style="{%if it.quali == 'POS'%}background-color:rgba(34, 201, 8, 0.44){%elif it.quali == 'NEU' %}background-color:#fadb6b{% elif it.quali == 'NEG' %}background-color:#f95353{% else %} background-color:white{% endif %} ;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px"> Sentimento: {{ it.quali }}</span><span style="background-color:white;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:595px">{{ it.data_pub }}</span></p></li><li style="padding:5px"><p><span style="background-color:oldlace;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius:5px;padding:2px">@{{ it.nome_twi }}</span><span style="background-color:#b488ce;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:7px;{%if it.tag == '' %}visibility:hidden{% else %}visibilty:visible{% endif %}">{{ it.tag }}</span></p></li>
-	<li style="padding:5px"><p style="font-family:'calibri'">{{ it.texto }}</p></li>
+	<li style="padding:5px"><p><span style="{%if it.quali == 'POS'%}background-color:rgba(34, 201, 8, 0.44){%elif it.quali == 'NEU' %}background-color:#fadb6b{% elif it.quali == 'NEG' %}background-color:#f95353{% else %} background-color:white{% endif %} ;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px"> Sentimento: {{ it.quali }}</span><span style="background-color:white;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:1%">{{ it.data_pub }}</span></p></li><li style="padding:5px"><p><span style="background-color:oldlace;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius:5px;padding:2px">@{{ it.nome_twi }}</span><span style="background-color:#b488ce;font-family:'calibri';box-shadow: 2px 1.5px 2px black;border-style:solid;border-color:black;border-width:1px;border-radius: 5px;padding:2px;margin-left:7px;{%if it.tag < 1 %}visibility:hidden{% else %}visibilty:visible{% endif %}">{{ it.tag }}</span></p></li>
+	<li style="padding:5px;margin:7px"><p style="font-family:'calibri'">{{ it.texto }}</p></li>
 	    <li>		  
-    		   <input type="checkbox" name="choice" id="1" value= "{{ it.id }}"/>
-    	  	   <label style="font-family:'calibri'">Selecionar</label><br /></li>
+    		   <input style="margin:7px" type="checkbox" name="choice" id="1" value= "{{ it.id }}"/>
+    	  	   <label style="font-family:'calibri';margin:1px">Selecionar</label><br /></li>
         </div></br>
 	{% endfor %}    	
     </ul>
@@ -81,9 +82,4 @@
     {% else %}
 	<p>Nenhum item coletado</p>
     {% endif %}
-{% endblock %}
-
-
-
-
-
+{% endblock %} 

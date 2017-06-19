@@ -12,25 +12,65 @@
 	
 }
 
-.divgrafico 
+@keyframes anime1
 {
-	border-style: outset;
-	border-color: blue;
+    from {height: 3.5%; }
+    to {height: 5%; }
 }
 
-#inner
+@keyframes anime2
 {
-    	position: absolute;
- 	left: 0;
- 	overflow-x: hidden;
- 	overflow-y: scroll;
-}
-
-#inner::-moz-scrollbar {
- display: none;
+    from {margin-top: 100%; }
+    to {margin-top: 5%; }
 }
 
 
+@keyframes anime3
+{
+    from {left: 100%; }
+    to {left: 50%; }
+}
+
+@keyframes anime4
+{
+    from {margin-top: 100%; }
+    to {margin-top: 29%; }
+}
+
+@keyframes anime5
+{
+    from {margin-top: 100%; }
+    to {margin-top: 1%; }
+}
+
+@keyframes anime6
+{
+    from {width: 3.5%; }
+    to {width: 17.5%; }
+}
+
+@keyframes anime7
+{
+    from {filter:blur(0px); }
+    to {filter:blur(7px); }
+}
+
+@keyframes anime8
+{
+    from {filter:opacity(40%); }
+    to {filter:opacity(0%); }
+}
+
+@keyframes anime9
+{
+    from {filter:opacity(75%); }
+    to {filter:opacity(10%); }
+}
+
+.but:hover
+{
+    animation: anime1 1s ease 0.5s infinite normal
+}
 
 h1 
 {
