@@ -299,6 +299,6 @@ def barview(usuario_id):
 		{'Palavra': 'monitoramento'}]}
 	     ])
 
-    	cht5 = Chart(datasource=info, series_options=[{'options':{'type': 'bar', 'maxPointWidth': 25, 'stacking': False}, 'terms':{'Palavra': ['Total']}}], chart_options={'animation':{'duration':3000}, 'colors':['rgba(213, 10, 7, 0.71)','rgba(16, 203, 194, 0.71)','rgba(150, 203, 16, 0.71)'],'title': { 'text': 'Total por monitoramento'}, 'xAxis':{'title':{'text':'Palavra'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Total'}}})
+    	cht5 = Chart(datasource=info, series_options=[{'options':{'type': 'bar', 'maxPointWidth': 25, 'stacking': False}, 'terms':{'Palavra': ['Total']}}], chart_options={'animation':{'duration':3000}, 'colors':['#ff8e24'],'title': { 'text': 'Total por monitoramento'}, 'xAxis':{'title':{'text':'Palavra'}}, 'yAxis':{'allowDecimals': False, 'title':{'text':'Total'}}})
 	return cht5
     
