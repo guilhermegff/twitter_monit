@@ -11,7 +11,7 @@
           <li style="margin:7px">Logado: {{ usuario }}</li>
 	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
 	  <li style="margin:7px"><a href="{% url 'monitoramento:Grafico' pk %}">Graficos</a></li>
-	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_delete' pk %}">Deletar Monitoramento</a></li>
 	  </br>
           <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
       </ul>

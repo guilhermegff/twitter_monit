@@ -30,7 +30,7 @@
 	{% if user.is_authenticated %}
           <li style="margin:7px">Logado: {{user.get_username }}</li>
 	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramentos' %}">Home</a></li>
-	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_create' %}">Criar</a></li>
+	  <li style="margin:7px"><a href="{% url 'monitoramento:monitoramento_create' %}">Criar Monitoramento</a></li>
 	  <li style="margin:7px"><a href="{% url 'monitoramento:schema' %}">API</a></li>
 	  </br>
           <li style="margin:7px"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>

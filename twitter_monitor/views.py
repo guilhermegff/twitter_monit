@@ -145,7 +145,7 @@ def coletar(request):
     pk = request.POST.get('palavra')
     objeto = get_object_or_404(Monitoramento, pk=pk)
     palavra = objeto.palavra
-    dataini = date.today()
+    dataini = date.today() - timedelta(7)
     for dias in range(7):
     	dataFrom = dataini - timedelta(dias + 1)
 	dataTo = dataFrom + timedelta(1)
