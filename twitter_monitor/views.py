@@ -187,7 +187,7 @@ def cadastro(request):
 	    return redirect('monitoramento:monitoramentos')
     else:
 	form = UserCreationForm()
-    return render(request, 'livros/cadastro_form.html', {'form': form})
+    return render(request, 'twitter_monitor/cadastro_form.html', {'form': form})
 	
 class MonitoramentoUpdate(UpdateView):
     model = Monitoramento
