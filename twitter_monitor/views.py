@@ -11,6 +11,7 @@ from datetime import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from chartit import DataPool, Chart
 from got import *
 from .graficos import combview_total, combview_mensal, combview_semanal, barview
@@ -181,7 +182,7 @@ def cadastro(request):
 	if form.is_valid():
 	    form.save()
 	    username = form.cleaned_data.get('username')
-	    raw_password = form.cleaned_data.get('password')
+	    raw_password = form.cleaned_data.get('password1')
 	    user = authenticate(username=username, password=raw_password)
 	    login(request, user)
 	    return redirect('monitoramento:monitoramentos')
